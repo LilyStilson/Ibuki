@@ -1,4 +1,4 @@
-<div align="center"><img src="docs/img/logo/Ibuki Logo.png" alt="Ibuki" height="256px"></img></div>
+<div align="center"><img src="https://raw.githubusercontent.com/LilyStilson/Ibuki/master/docs/img/logo/Ibuki logo.png" alt="Ibuki" height="256px"></img></div>
 <h1 align="center">Ibuki</h1>
 <p align="center">An ultimate Booru browser app for Android and iOS</p>
 
