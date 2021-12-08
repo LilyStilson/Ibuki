@@ -5,11 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="16dp"
+    android:transitionName="previewCard"
     app:cardCornerRadius="8dp"
     app:cardUseCompatPadding="true"
     android:id="@+id/imageCardView"
     android:clickable="true"
-    android:foreground="?android:attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground"
+    app:cardBackgroundColor="@android:color/transparent">
 
     <ImageView
         android:layout_width="match_parent"
@@ -19,6 +21,7 @@
         android:transitionName="previewImage"
         android:id="@+id/imageView"
         android:tag="000000"
-        android:contentDescription=""/>
+        android:contentDescription=""
+        app:cardCornerRadius="8dp"/>
     
 </androidx.cardview.widget.CardView>

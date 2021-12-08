@@ -21,6 +21,7 @@ using Android.Util;
 using Android.Graphics;
 using Android.Graphics.Drawables;
 using System.IO;
+using AndroidX.CardView.Widget;
 
 namespace IbukiMobile {
     public class RecyclerScrollListener : RecyclerView.OnScrollListener {
@@ -179,16 +180,19 @@ namespace IbukiMobile {
 
             Intent intent = new Intent(this, typeof(BigImageActivity));
             intent.PutExtra("drawable", b);
-            intent.PutExtra("post", Posts[position].ToString());
-            
+            intent.PutExtra("post", Posts[position].ToString());            
 
             ActivityOptions options;
-            if (PreviousPosition == position) {
-                intent.PutExtra("loaded", true);
-                options = ActivityOptions.MakeSceneTransitionAnimation(this, Pair.Create((sender as ImageView), "largeImage"));
+            if (PreviousPosition == position || (sender as ImageView).ContentDescription == "visited") {
+                intent.PutExtra("cached", true);
+                options = ActivityOptions.MakeSceneTransitionAnimation(this, 
+                    Pair.Create(sender as ImageView, "largeImage")
+                );   
             } else {
-                intent.PutExtra("loaded", false);
-                options = ActivityOptions.MakeSceneTransitionAnimation(this, Pair.Create((sender as ImageView), "previewImage"));
+                intent.PutExtra("cached", false);
+                options = ActivityOptions.MakeSceneTransitionAnimation(this, 
+                    Pair.Create((sender as ImageView), "previewImage")
+                );
             }
              
             StartActivity(intent, options.ToBundle());

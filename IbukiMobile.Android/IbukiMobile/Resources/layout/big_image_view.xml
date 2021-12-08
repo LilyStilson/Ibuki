@@ -35,11 +35,10 @@
         android:layout_height="wrap_content"
         android:layout_behaviour/>-->
 
-
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent">               
+            
         <ImageView
             android:id="@+id/previewImageView"
             android:layout_width="match_parent"
@@ -49,7 +48,7 @@
             android:adjustViewBounds="true"
             android:transitionName="previewImage"
             android:contentDescription="" />
-
+      
         <ProgressBar
             android:id="@+id/loadProgressBar"
             android:layout_width="48dp"
@@ -67,6 +66,5 @@
             android:contentDescription="" />
 
     </RelativeLayout>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

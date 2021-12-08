@@ -38,7 +38,10 @@ namespace IbukiMobile {
         }
 
         private void OnClick(object sender, int position) {
-            if (ItemClick != null) ItemClick(sender, position);
+            if (ItemClick != null) {
+                ItemClick(sender, position);
+                (sender as ImageView).ContentDescription = "visited";
+            }
         }
     }
 

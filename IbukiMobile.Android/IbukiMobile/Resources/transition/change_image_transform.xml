@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <transitionSet xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:transitionOrdering="together">
 
     <targets>
@@ -8,9 +9,16 @@
         <target android:excludeId="@android:id/navigationBarBackground" />
     </targets>
 
-    <changeBounds />
-    <changeTransform />
-    <changeClipBounds />
-    <changeImageTransform />
+    <!--<transition 
+        class=".OutlineRadiusTransition"
+        app:endRadius="0dp"
+        app:startRadius="8dp" />-->
+
+    <fade android:duration="250"/>
+
+    <changeBounds android:duration="250"/>
+    <changeTransform android:duration="250"/>
+    <changeClipBounds android:duration="250"/>
+    <changeImageTransform android:duration="250"/>
 
 </transitionSet>

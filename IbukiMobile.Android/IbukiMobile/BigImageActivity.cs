@@ -15,6 +15,9 @@ using FFImageLoading;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using AndroidX.AppCompat.App;
+using Java.Interop;
+using Android.Transitions;
+using Android.Animation;
 
 namespace IbukiMobile {
     [Activity(ConfigurationChanges = ConfigChanges.Orientation)]
@@ -29,18 +32,19 @@ namespace IbukiMobile {
 
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
             SupportActionBar.SetDisplayShowHomeEnabled(true);
-            
+   
             /// Create your application here
             previewImageView = FindViewById<ImageView>(Resource.Id.previewImageView);
             previewImageView.Visibility = ViewStates.Visible;
             largeImageView = FindViewById<ImageView>(Resource.Id.largeImageView);
+
             loadProgressBar = FindViewById<ProgressBar>(Resource.Id.loadProgressBar);
             
             Post = JsonConvert.DeserializeObject<JObject>(Intent.Extras.GetString("post"));
          
             SupportActionBar.Title = $"ID: {Post.GetValue($"{MainActivity.Booru.post.ID}").Value<string>()}";
 
-            if(Intent.Extras.GetBoolean("loaded")) {
+            if (Intent.Extras.GetBoolean("cached")) {
                 previewImageView.Visibility = ViewStates.Gone;
                 loadProgressBar.Visibility = ViewStates.Gone;
             } else {
@@ -53,7 +57,8 @@ namespace IbukiMobile {
                 loadProgressBar.Visibility = ViewStates.Visible;
             }
 
-            ImageService.Instance.LoadUrl(Post.GetValue($"{MainActivity.Booru.post.LargeImageURL}").Value<string>())
+            ImageService.Instance.LoadUrl(Post.GetValue($"{MainActivity.Booru.post.LargeImageURL}").Value<string>()).Retry(3, 500)
+                //.DownloadStarted((info) => { })
                 .Success(() => {
                     largeImageView.Visibility = ViewStates.Visible;
                     loadProgressBar.Visibility = ViewStates.Gone;
